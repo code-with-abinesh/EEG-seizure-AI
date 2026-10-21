@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================
+   CSS DESIGN TOKENS
+   ============================ */
+:root {
+  /* Brand Colors */
+  --color-deep-forest: #005C35;
+  --color-dark-green: #004A2A;
+  --color-primary-green: #087A46;
+  --color-medium-green: #14945A;
+  --color-soft-sage: #DCEBDD;
+  --color-warm-cream: #F8F6EC;
+  --color-light-cream: #FCFBF5;
+  --color-white: #FFFFFF;
+  --color-near-black: #111614;
+  --color-muted: #5F6862;
+  --color-border: #DDE4DC;
+
+  /* Semantic */
+  --color-bg-page: #F8F6EC;
+  --color-bg-card: #FFFFFF;
+  --color-text-primary: #111614;
+  --color-text-muted: #5F6862;
+
+  /* Typography */
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --section-padding: 6rem 0;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 4px 16px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 92, 53, 0.12);
+}
+
+/* ============================
+   BASE
+   ============================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-warm-cream);
+  color: var(--color-near-black);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ============================
+   SCROLLBAR
+   ============================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-warm-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-medium-green); }
+
+/* ============================
+   TAILWIND CUSTOM THEME EXTENSION
+   ============================ */
+@theme {
+  --color-forest: #005C35;
+  --color-forest-dark: #004A2A;
+  --color-green-brand: #087A46;
+  --color-green-mid: #14945A;
+  --color-sage: #DCEBDD;
+  --color-cream: #F8F6EC;
+  --color-cream-light: #FCFBF5;
+  --color-ink: #111614;
+  --color-muted: #5F6862;
+  --color-border-subtle: #DDE4DC;
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ============================
+   ANIMATIONS
+   ============================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes waveform {
+  0% { d: path("M0 50 Q10 20 20 50 Q30 80 40 50 Q50 20 60 50 Q70 80 80 50 Q90 20 100 50"); }
+  50% { d: path("M0 50 Q10 70 20 30 Q30 10 40 60 Q50 80 60 30 Q70 15 80 55 Q90 75 100 40"); }
+  100% { d: path("M0 50 Q10 20 20 50 Q30 80 40 50 Q50 20 60 50 Q70 80 80 50 Q90 20 100 50"); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease both;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 2s linear infinite;
+}
+
+/* Staggered delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* ============================
+   SHIMMER LOADING
+   ============================ */
+.shimmer {
+  background: linear-gradient(90deg, #f0ede1 25%, #e8e5d9 50%, #f0ede1 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================
+   TYPOGRAPHY UTILITIES
+   ============================ */
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+
+/* ============================
+   FOCUS STATES
+   ============================ */
+:focus-visible {
+  outline: 2px solid var(--color-primary-green);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================
+   DRAG & DROP
+   ============================ */
+.drag-over {
+  border-color: var(--color-primary-green) !important;
+  background-color: #f0f7f2 !important;
+}
+
+/* ============================
+   WAVEFORM SVG
+   ============================ */
+.eeg-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* ============================
+   RESPONSIVE LAYOUT
+   ============================ */
+
+/* Expand main content container for wide desktop viewports */
+.max-w-7xl {
+  width: 100%;
+  max-width: min(100% - 48px, 1600px);
+}
+
+/* Ensure the narrower sections still respect viewport width */
+.max-w-4xl {
+  width: 100%;
+}
+
+/* Tablet: 768px – 1023px
+   Grid collapses to single column via Tailwind (grid-cols-1).
+   Ensure cards use full width. */
+@media (max-width: 1023px) {
+  /* Left column (results + waveform) and right column (sidebar)
+     each take full width when grid is single-column */
+  .lg\:col-span-2 {
+    grid-column: span 1 / span 1;
+  }
+}
+
+/* Mobile: ≤767px */
+@media (max-width: 767px) {
+  /* Prevent any child from causing horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Ensure every card/panel is width-contained */
+  .rounded-2xl {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Probability bar label column: shrink label on very small screens */
+  .w-28 {
+    width: 5rem;
+  }
+
+  /* Make the waveform chart container shorter on mobile to save vertical space */
+  .eeg-chart-mobile {
+    height: 240px !important;
+  }
+
+  /* Ensure recharts ResponsiveContainer width resolves inside flex/grid cells */
+  .recharts-responsive-container {
+    min-width: 0 !important;
+  }
+
+  /* Make page header flex column on mobile */
+  .sm\:flex-row {
+    flex-direction: column;
+  }
+
+  /* Ensure upload area doesn't overflow */
+  input[type="file"] {
+    max-width: 100%;
+  }
+}
+
+/* Very small screens: ≤390px */
+@media (max-width: 390px) {
+  /* Reduce horizontal padding slightly to give more usable width */
+  .px-4 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Ensure channel toggle buttons wrap at a reasonable size */
+  .rounded-full {
+    white-space: nowrap;
+  }
+}
