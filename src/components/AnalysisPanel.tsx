@@ -12,7 +12,7 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ result }) => {
     { label: 'Channels detected', value: result.channelsDetected.toString() },
     { label: 'Signal quality', value: result.signalQuality.charAt(0).toUpperCase() + result.signalQuality.slice(1) },
     { label: 'Analysis status', value: 'Complete' },
-    { label: 'Model', value: 'EEG Seizure Detection Model' },
+    { label: 'Model', value: 'NeuroTrace AI Model' },
     {
       label: 'Model output',
       value: `Non-seizure ${result.nonSeizureProbability.toFixed(1)}% / Seizure ${result.seizureProbability.toFixed(1)}%`,
